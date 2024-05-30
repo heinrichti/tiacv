@@ -15,7 +15,10 @@
 
   show heading.where(level: 1): it => {
     set text(font: "Roboto", fill: main.get())
-    let h_before = query(selector(heading).before(here()))
+    let h_before = query(selector(
+      heading.where(level: 1)
+        .or(heading.where(level: 2)))
+      .before(here()))
     if h_before.len() > 1 {
       let header = h_before.at(h_before.len()-2)
       if header.location().page() == here().page() and header.depth == 1 {
